@@ -1,5 +1,9 @@
 package hellojpa;
 
+import hellojpa.domain.Member;
+import hellojpa.domain.Order;
+import hellojpa.domain.OrderItem;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,10 +17,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Member member = new Member();
-        member.setId(2L);
-        member.setName("Kim");
-        em.persist(member);
-        tx.commit();
+//        member.setId(2L);
+//        member.setName("Kim");
+//        em.persist(member);
+//        tx.commit();
 //
 //        try{
 //            Member member = new Member();
@@ -25,17 +29,33 @@ public class JpaMain {
 //            em.persist(member);
 //            tx.commit();
 //            em.close();
+//        try{
+////            Member a = em.find(Member.class, 1L);
+////            System.out.println(a.getName());
+//
+//            TypedQuery<Member> query = em.createQuery("select m from Member as m", Member.class);
+//            List<Member> members = query.getResultList();
+//            tx.commit();
+//            System.out.println(members);
+//
+//        }catch(Exception e) {
+//            tx.rollback();
+//        }finally {
+//            em.close();
+//        }
+
         try{
-//            Member a = em.find(Member.class, 1L);
-//            System.out.println(a.getName());
+            Order order = new Order();
+            em.persist(order);
 
-            TypedQuery<Member> query = em.createQuery("select m from Member as m", Member.class);
-            List<Member> members = query.getResultList();
-            System.out.println(members);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            em.persist(orderItem);
 
-
-        }catch(Exception e){
+            tx.commit();
+        }catch (Exception e){
             tx.rollback();
+        }finally {
             em.close();
         }
 
