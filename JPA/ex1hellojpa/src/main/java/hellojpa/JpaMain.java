@@ -1,5 +1,6 @@
 package hellojpa;
 
+import hellojpa.domain.Book;
 import hellojpa.domain.Member;
 import hellojpa.domain.Order;
 import hellojpa.domain.OrderItem;
@@ -16,7 +17,7 @@ public class JpaMain {
 
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        Member member = new Member();
+//        Member member = new Member();
 //        member.setId(2L);
 //        member.setName("Kim");
 //        em.persist(member);
@@ -45,12 +46,10 @@ public class JpaMain {
 //        }
 
         try{
-            Order order = new Order();
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            em.persist(orderItem);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("Kim");
+            em.persist(book);
 
             tx.commit();
         }catch (Exception e){
