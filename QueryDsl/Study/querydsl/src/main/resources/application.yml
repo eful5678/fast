@@ -1,12 +1,14 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/query_dsl_first
+    username: root
+    password: 321200
+    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create
+#      ddl-auto: update
+#      ddl-auto: none
     properties:
       hibernate:
         show_sql: true

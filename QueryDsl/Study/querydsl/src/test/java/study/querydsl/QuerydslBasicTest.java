@@ -1,5 +1,6 @@
 package study.querydsl;
 
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,8 @@ import study.querydsl.entity.QMember;
 import study.querydsl.entity.Team;
 
 import javax.persistence.EntityManager;
+
+import java.util.List;
 
 import static study.querydsl.entity.QMember.member;
 
@@ -26,6 +29,7 @@ public class QuerydslBasicTest {
 
     @BeforeEach
     public void before(){
+        queryFactory = new JPAQueryFactory(em);
         Team teamA = new Team("teamA");
         Team teamB = new Team("teamB");
 
@@ -56,12 +60,73 @@ public class QuerydslBasicTest {
 
     @Test
     public void startQuerydsl(){
-//        QMember m = new QMember("m");
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+        QMember m = new QMember("m");
         Member findMember = queryFactory
-                .select(member)
-                .from(member)
-                .where(member.username.eq("member1"))
+                .select(m)
+                .from(m)
+                .where(m.username.eq("member1"))
                 .fetchOne();
         Assertions.assertThat(findMember.getUsername()).isEqualTo("member1");
     }
+
+    @Test
+    public void startQuerydsl2(){
+        QMember m = new QMember("m");
+        Member findMember = queryFactory
+                .select(m)
+                .from(m)
+                .where(m.username.eq("member1"))
+                .fetchOne();
+
+        Assertions.assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    @Test
+    public void search(){
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("member1")
+                    .and(member.age.eq(10)))
+                .fetchOne();
+
+        Assertions.assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    @Test
+    public void searchAndParam(){
+        List<Member> result1 = queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("member1"),
+                        member.age.eq(10))
+                .fetch();
+
+        Assertions.assertThat(result1.size()).isEqualTo(1);
+    }
+
+//    @Test
+//    public void join_on_filtering() throws Exception{
+//        queryFactory
+//                .select(member,team)
+//                .from(member)
+//                .leftJoin(member.team, team)
+//                    .on(team.name.eq("TeamA"))
+//                .fetch();
+//    }
+
+//    @Test
+//    public void subQuery(){
+//
+//        QMember memberSub = new QMember("memberSub");
+//
+//        List<Member> result = queryFactory
+//                .selectFrom(member)
+//                .where(member.age.eq(
+//                        JPAExpressions.select(memberSub.age.max())
+//                        .from(memberSub)
+//                ))
+//                .fetch();
+//        Assertions.assertThat(result).extracting("age")
+//                .containsExactly(40);
+//    }
 }
