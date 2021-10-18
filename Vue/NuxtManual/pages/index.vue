@@ -1,3 +1,6 @@
 <template>
-  <h1>Hello world!</h1>
+<div>
+    <p>Nuxt 시작하기</p>
+</div>
+  
 </template>
