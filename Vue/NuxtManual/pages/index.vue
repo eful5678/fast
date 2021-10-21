@@ -1,6 +1,5 @@
 <template>
-<div>
+  <div>
     <p>Nuxt 시작하기</p>
-</div>
-  
+  </div>
 </template>
