@@ -32,4 +32,15 @@ public class ProductsRepositorySupportImpl extends QuerydslRepositorySupport imp
 
         return list;
     }
+
+    @Override
+    public ProductsDto.detail detail(Long id) {
+
+        QProducts product = QProducts.products;
+
+        return jpaQueryFactory.select(Projections.constructor(ProductsDto.detail.class, product))
+                        .from(product)
+                        .where(product.id.eq(id))
+                        .fetchOne();
+    }
 }

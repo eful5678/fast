@@ -21,9 +21,25 @@ public class ProductsDto {
 
         private BigDecimal price;
 
+        private String imageUrl;
+
+        private Long id;
+
         public ProductsList(Products products){
             this.name = products.getName();
             this.price = products.getPrice();
+            this.imageUrl = products.getImageUrl();
+            this.id = products.getId();
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class detail{
+        private Long id;
+
+        public detail(Products products){
+            this.id = products.getId();
         }
     }
 

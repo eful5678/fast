@@ -7,4 +7,7 @@ import java.util.List;
 public interface ProductsRepositorySupport {
 
     List<ProductsDto.ProductsList> productsList(ProductsDto.ProductsListParam productsListParam);
+    
+    // 상품정보 조회
+    ProductsDto.detail detail(Long id);
 }

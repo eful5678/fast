@@ -20,4 +20,10 @@ public class ProductsServiceImpl implements ProductsService {
 
         return productsRepositorySupport.productsList(productsListParam);
     }
+
+    @Override
+    public ProductsDto.detail detail(Long product_id) {
+        
+        return productsRepositorySupport.detail(product_id);
+    }
 }

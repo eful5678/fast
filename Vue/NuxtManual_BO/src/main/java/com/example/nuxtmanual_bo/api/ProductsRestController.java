@@ -2,10 +2,12 @@ package com.example.nuxtmanual_bo.api;
 
 import com.example.nuxtmanual_bo.model.ProductsDto;
 import com.example.nuxtmanual_bo.service.ProductsService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -20,4 +22,10 @@ public class ProductsRestController {
         System.out.println("ddd");
         return productsService.productsList(productsListParam);
     }
+
+    @GetMapping("/{id}")
+    ProductsDto.detail detail(@PathVariable Optional<Long> id){
+        return productsService.detail(id.get());
+    }
+
 }
