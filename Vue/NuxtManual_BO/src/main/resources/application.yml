@@ -1,21 +1,26 @@
 spring:
   datasource:
-    url: jdbc:mariadb://127.0.0.1:3306/Nuxt_Vue
-    username: root
-    password: 321200
+    url: jdbc:mariadb://127.0.0.1:3306/nuxt_test
+    username: jin
+    password: 545103
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
-      #      ddl-auto: create
-      ddl-auto: update
+#      ddl-auto: create
+          ddl-auto: update
     #      ddl-auto: none
     properties:
       hibernate:
-        #        show_sql: true
+        # show_sql: true
         format_sql: true
+        # order_inserts: true
+        # generate_statistics: true
+        # cache:
+        #   use_second_level_cache: true
+        #   use_query_cache: true
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
 
 server:
-  port: 8090
+  port: 8091

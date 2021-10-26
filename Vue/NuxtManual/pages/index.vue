@@ -5,8 +5,17 @@
         <input type="text" />
       </div>
       <ul>
-        <li class="item flex" v-for="product in products" :key="product.id" @click="moveToDetailPage(product.id)">
-          <img class="product-image" :src="product.imageUrl" :alt="product.name" />
+        <li
+          class="item flex"
+          v-for="product in products"
+          :key="product.id"
+          @click="moveToDetailPage(product.id)"
+        >
+          <img
+            class="product-image"
+            :src="product.imageUrl"
+            :alt="product.name"
+          />
           <p>{{ product.name }}</p>
           <span>{{ product.price }}</span>
         </li>
@@ -23,7 +32,7 @@ export default {
   //   ProductList,
   // },
   async asyncData() {
-    const response = await axios.get("http://localhost:8090/products/list");
+    const response = await axios.get("http://localhost:8091/products/list");
     console.log(response);
     const products = response.data.map((item) => ({
       ...item,
@@ -33,7 +42,7 @@ export default {
   },
 
   methods: {
-    moveToDetailPage: function(id) {
+    moveToDetailPage: function (id) {
       console.log("ddd");
       console.log(id);
       this.$router.push(`detail/${id}`);

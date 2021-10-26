@@ -13,7 +13,7 @@
 import axios from "axios";
 export default {
   async asyncData() {
-    const response = await axios.get("http://localhost:8090/products/list");
+    const response = await axios.get("http://localhost:8091/products/list");
     console.log(response);
     const products = response.data;
     return { products }; // products: products
