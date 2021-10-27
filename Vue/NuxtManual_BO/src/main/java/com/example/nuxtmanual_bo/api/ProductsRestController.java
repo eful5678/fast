@@ -28,4 +28,9 @@ public class ProductsRestController {
         return productsService.detail(id.get());
     }
 
+    @GetMapping()
+    List<ProductsDto.listByKeyword> listByKeyword(@RequestParam(name = "name_like") String keyword){
+        return null;
+    }
+
 }

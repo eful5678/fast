@@ -55,5 +55,8 @@ public class ProductsDto {
         }
     }
 
+    public class listByKeyword {
+    }
+
 
 }

@@ -1,9 +1,12 @@
 <template>
   <div class="app">
     <main>
-      <div>
-        <input type="text" />
-      </div>
+      <SearchInput
+        :search-keyword="searchKeyword"
+        @input="updateSearchKeyword"
+        @search="searchProducts"
+      ></SearchInput>
+      <!-- <SearchInput v-model="searchKeyword"></SearchInput> -->
       <ul>
         <li
           class="item flex"
@@ -26,8 +29,16 @@
 
 <script>
 import axios from "axios";
+import SearchInput from "../components/SearchInput.vue";
+import { fetchProductsByKeyword } from "@/api/index";
 // import ProductList from "~/components/ProductList.vue";
 export default {
+  components: { SearchInput },
+  data() {
+    return {
+      searchKeyword: "",
+    };
+  },
   // components: {
   //   ProductList,
   // },
@@ -46,6 +57,13 @@ export default {
       console.log("ddd");
       console.log(id);
       this.$router.push(`detail/${id}`);
+    },
+    updateSearchKeyword: function (keyword) {
+      this.searchKeyword = keyword;
+    },
+    searchProducts: async function () {
+      const response = await fetchProductsByKeyword(this.searchKeyword);
+      console.log(response);
     },
   },
 };
