@@ -38,8 +38,20 @@ public class ProductsDto {
     public static class detail{
         private Long id;
 
-        public detail(Products products){
-            this.id = products.getId();
+        private String name;
+
+        private BigDecimal price;
+
+        private String imageUrl;
+
+        public detail(Long id,
+                        String name,
+                        BigDecimal price,
+                        String imageUrl){
+            this.id = id;
+            this.name = name;
+            this.price = price;
+            this.imageUrl = imageUrl;
         }
     }
 

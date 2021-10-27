@@ -4,6 +4,7 @@ import com.example.nuxtmanual_bo.domain.Products;
 import com.example.nuxtmanual_bo.domain.QProducts;
 import com.example.nuxtmanual_bo.model.ProductsDto;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -38,7 +39,13 @@ public class ProductsRepositorySupportImpl extends QuerydslRepositorySupport imp
 
         QProducts product = QProducts.products;
 
-        return jpaQueryFactory.select(Projections.constructor(ProductsDto.detail.class, product))
+        final BooleanExpression isUseYn;
+
+        return jpaQueryFactory.select(Projections.constructor(ProductsDto.detail.class, 
+                                    product.id,
+                                    product.name,
+                                    product.price,
+                                    product.imageUrl))
                         .from(product)
                         .where(product.id.eq(id))
                         .fetchOne();
