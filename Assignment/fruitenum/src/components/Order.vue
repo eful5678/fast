@@ -1,4 +1,8 @@
 <template>
+<!-- 
+1. data 세팅 시점
+- 부모로부터
+ -->
   <div>
     <div>
       <h2>주문합니다 여긴 자식</h2>
@@ -16,7 +20,7 @@
         </tr>
         <tr>
           <th>갯수</th>
-          <td><input type="text" v-model="fruitQuantity"/></td>
+          <td><input type="text" v-model="fruitQuantity" /></td>
         </tr>
       </table>
     </div>
@@ -33,15 +37,18 @@ export default {
       fruitName: "",
       fruitQuantity: 0,
       orderDetail: {
-          name: '',
-          quantity: '',
+        name: "",
+        quantity: "",
       },
     };
   },
+  created() {
+    console.log("Order created()");
+  },
   methods: {
     Order: function () {
-    this.orderDetail.name = this.fruitName;
-    this.orderDetail.quantity = this.fruitQuantity;
+      this.orderDetail.name = this.fruitName;
+      this.orderDetail.quantity = this.fruitQuantity;
       console.log("Order");
       this.$emit("Order", this.orderDetail);
     },
