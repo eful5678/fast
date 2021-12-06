@@ -26,7 +26,7 @@
 import sourceData from '@/data'
 
 export default {
-  name: 'ThreadShow',
+  name: 'PageThreadShow',
   // to passing down 'id' property to child component
   props: {
     id: {
