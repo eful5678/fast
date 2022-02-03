@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        {{ message }}<br>
+        {{sitename}}
+        <main>
+            <div>
+                <h1>
+                    {{product.title}}
+                </h1>
+                <p v-html="product.description"></p>
+                <p v-text="product.description"></p>
+                <p>
+                    {{product.price | formatPrice}}
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
