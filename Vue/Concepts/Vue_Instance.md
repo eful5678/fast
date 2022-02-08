@@ -2,8 +2,6 @@
 
 ## Concept of Vue Instance
 - Vue로 개발할 때 필수로 생성해야 하는 코드
-- Vue Application 그 자체
-- Vue의 구성요소들
 
 ## How to Create Vue Instance
 - new Vue() 통해 인스턴스 생성
@@ -71,3 +69,8 @@ new Vue({
         - CSS selector string / actual HTML Element
     - Instance가 mount되었을때, element는 vm.$el에 접근 가능
         -vm.$el
+
+- data -> vm.$data
+    - Object
+    - Vue Instance가 관찰하는 object
+    - Vue Instance가 data 개체의 속성에 대한 Access를 프록시
